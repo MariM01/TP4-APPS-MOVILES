@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="volverAInicio()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>
+      Detalle de Personaje
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-card-title>{{ personaje.name }}</ion-card-title>
+      <p>ID: {{ personaje.id }}</p>
+      <p>Estado: {{ personaje.status }}</p>
+      <p>Especie: {{ personaje.species }}</p>
+      <!-- Aquí puedes mostrar más detalles del personaje según tus necesidades -->
+    </ion-card-content>
+  </ion-card>
+</ion-content>
