@@ -12,14 +12,16 @@
       <ion-title size="large">Personajes</ion-title>
     </ion-toolbar>
   </ion-header>
+  <div class="ion-text-center">
+    <ion-list>
+      <ion-item *ngFor="let personaje of personajes">
+        ID {{personaje.id}}:  {{ personaje.name }}
+        <ion-button slot="end" (click)="eliminarPersonaje(personaje)">Eliminar</ion-button>
+      </ion-item>
+    </ion-list>
+  </div>
 
-  <ion-list>
-    <ion-item *ngFor="let personaje of personajes">
-      {{ personaje.name }}
-    </ion-item>
-  </ion-list>
-
-  <div id="container">
-    <ion-button (click)="obtenerPersonaje()">Obtener Personaje</ion-button>
+  <div class="ion-text-center">
+    <ion-button class="ion-margin" (click)="obtenerPersonaje()">Obtener Personaje</ion-button>
   </div>
 </ion-content>

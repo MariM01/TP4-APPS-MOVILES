@@ -16,4 +16,12 @@ export class HomePage {
 
     this.http.get(`https://rickandmortyapi.com/api/character/${id}`).subscribe((data: any) => {this.personajes.push(data);});
   }
+
+  public eliminarPersonaje(personaje: any) {
+    // Ejemplo de implementación:
+    const index = this.personajes.indexOf(personaje);
+    if (index !== -1) {
+      this.personajes.splice(index, 1); // Elimina el personaje del arreglo
+    }
+  }
 }
