@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { SharedDataService } from '../shared-data-personaje.service';
 
 @Component({
   selector: 'app-home',
@@ -15,9 +14,7 @@ export class HomePage {
   public personaje: any;
   public isModalOpen: boolean = false;
 
-  constructor(private http: HttpClient, private router: Router,
-    private navCtrl: NavController,
-    private sharedDataService: SharedDataService) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   //constructor() {}
   public obtenerPersonaje() {
@@ -44,10 +41,5 @@ export class HomePage {
   {
     this.isModalOpen = set;
     this.personaje = null;
-  }
-
-  public verDetalles(personaje: any) {
-    this.sharedDataService.setPersonaje(personaje);
-    this.navCtrl.navigateForward('/detalle-personaje');
   }
 }
