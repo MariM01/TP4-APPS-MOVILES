@@ -14,11 +14,24 @@
 <ion-content [fullscreen]="true">
   <ion-card>
     <ion-card-content>
-      <ion-card-title>{{ personaje.name }}</ion-card-title>
-      <p>ID: {{ personaje.id }}</p>
-      <p>Estado: {{ personaje.status }}</p>
-      <p>Especie: {{ personaje.species }}</p>
-      <!-- Aquí puedes mostrar más detalles del personaje según tus necesidades -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="3" style="display: flex; justify-content: flex-start; align-items: flex-start;">
+            <div style="width: 250px; height: 250px; border-radius: 50%; overflow: hidden;">
+              <ion-img [src]="personaje.image" style="width: 100%; height: 100%; object-fit: cover;"></ion-img>
+            </div>
+          </ion-col>
+          <ion-col size="9">
+            <ion-card-title>{{ personaje.name }}</ion-card-title>
+            <p>ID: {{ personaje.id }}</p>
+            <p>Estado: {{ personaje.status }}</p>
+            <p>Especie: {{ personaje.species }}</p>
+            <p>Género: {{ personaje.gender }}</p>
+            <p>Origen: {{ personaje.origin.name }}</p>
+            <p>Ubicación: {{ personaje.location.name }}</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
     </ion-card-content>
   </ion-card>
 </ion-content>
