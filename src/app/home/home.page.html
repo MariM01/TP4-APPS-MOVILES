@@ -17,11 +17,71 @@
       <ion-item *ngFor="let personaje of personajes">
         ID {{personaje.id}}:  {{ personaje.name }}
         <div slot="end">
-          <ion-button (click)="verDetalles(personaje)">Ver</ion-button>
+          <ion-button (click)="setOpen(true, personaje)">Ver</ion-button>
           <ion-button (click)="eliminarPersonaje(personaje)">Eliminar</ion-button>
         </div>
       </ion-item>
     </ion-list>
+  </div>
+  <div>
+    <ion-modal [isOpen]="isModalOpen">
+      <ng-template>
+        <ion-header>
+          <ion-toolbar>
+            <ion-title>detalle de personaje: {{ personaje.name }}</ion-title>
+            <ion-buttons slot="end">
+              <ion-button (click)="setOpen(false, personaje)">Close</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <!-- ACA VA EL DETALLE -->
+        <ion-content class="ion-padding">
+          <ion-card>
+            <ion-card-content>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <div style="width: 200px; height: 200px; border-radius: 50%; overflow: hidden; margin: 0 auto;">
+                      <ion-img [src]="personaje.image" style="width: 100%; height: 100%; object-fit: cover;"></ion-img>
+                    </div>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label>ID:</ion-label>
+                      <ion-label>{{ personaje.id }}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Estado:</ion-label>
+                      <ion-label>{{ personaje.status }}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Especie:</ion-label>
+                      <ion-label>{{ personaje.species }}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Género:</ion-label>
+                      <ion-label>{{ personaje.gender }}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Origen:</ion-label>
+                      <ion-label>{{ personaje.origin.name }}</ion-label>
+                    </ion-item>
+                    <ion-item>
+                      <ion-label>Ubicación:</ion-label>
+                      <ion-label>{{ personaje.location.name }}</ion-label>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+        </ion-content>
+                                              
+
+      </ng-template>
+    </ion-modal>
   </div>
 
   <div class="ion-text-center">

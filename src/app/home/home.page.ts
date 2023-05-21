@@ -12,10 +12,13 @@ import { SharedDataService } from '../shared-data-personaje.service';
 
 export class HomePage {
   public personajes: any[] = [];
+  public personaje: any;
+  public isModalOpen: boolean = false;
 
   constructor(private http: HttpClient, private router: Router,
     private navCtrl: NavController,
-    private sharedDataService: SharedDataService) {}
+    private sharedDataService: SharedDataService) { }
+
   //constructor() {}
   public obtenerPersonaje() {
     const id = Math.floor(Math.random() * 671) + 1; // Genera un número aleatorio entre 1 y 671
@@ -31,7 +34,19 @@ export class HomePage {
     }
   }
 
-  verDetalles(personaje: any) {
+  public setOpen(set:boolean, personaje:any)
+  {
+    this.isModalOpen = set;
+    this.personaje = personaje
+  }
+
+  public setClose(set:boolean, personaje:any)
+  {
+    this.isModalOpen = set;
+    this.personaje = null;
+  }
+
+  public verDetalles(personaje: any) {
     this.sharedDataService.setPersonaje(personaje);
     this.navCtrl.navigateForward('/detalle-personaje');
   }
