@@ -32,33 +32,34 @@ export class HomePage {
   // cargo de los preferences
   public async cargarPersonajes() {
     try {
-      const response = await Preferences.get({ key: this.STORAGE_KEY });
-      if (response.value) {
-        const result = JSON.parse(response.value);
-        console.log(result); // Aquí puedes hacer lo que necesites con el resultado
+      const { value } = await Preferences.get({ key: this.STORAGE_KEY });
+      if (value) {
+        const result = JSON.parse(value);
+        this.personajes = result;
       }
     } catch (error) {
       console.error('Error al cargar personajes:', error);
     }
   }
-}
 
   public obtenerPersonaje() {
     const id = Math.floor(Math.random() * 671) + 1; // Genera un número aleatorio entre 1 y 671
-
     this.http.get(`https://rickandmortyapi.com/api/character/${id}`).subscribe((data: any) => {
       this.personajes.push(data);
+      console.log(`Se cargó un personaje con ID ${id}`);
       this.guardarPersonajes();
     });
   }
 
-  private async mostrarAlerta(header: string, message: string) {
-    const toast = async () => {
-      await Toast.show({
-        text: 'Se a eliminado un personaje!',
-      });
-    };
-  }
+    private async mostrarAlerta(header: string, message: string) {
+      const toast = async () => {
+        await Toast.show({
+          text: message,
+        });
+      };
+      toast();
+      console.log("Se mostro el toast");
+    }
 
   public async eliminarPersonaje(personaje: any) {
     const alert = await this.alertController.create({
@@ -78,7 +79,7 @@ export class HomePage {
             const index = this.personajes.indexOf(personaje);
             if (index !== -1) {
               this.personajes.splice(index, 1);
-              this.guardarPersonajes()
+              this.guardarPersonajes();
             }
 
             // Mostrar una alerta de eliminación exitosa
@@ -101,4 +102,5 @@ export class HomePage {
     this.isModalOpen = set;
     this.personaje = null;
   }
+
 }
